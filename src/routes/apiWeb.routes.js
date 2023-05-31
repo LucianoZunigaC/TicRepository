@@ -2,7 +2,6 @@ const router = require('express').Router()
 const controller = require('../controllers/apiWeb.controller');
 
 // GET
-router.get('/', controller.home);
 router.get('/logOut', controller.logOut);
 
 

@@ -31,8 +31,7 @@ apiWebCtrl.home = async (req, res) => {
 // SignIn
 apiWebCtrl.signIn = passport.authenticate('local', {
     failureRedirect: '/signIn',
-    successRedirect: '/',
-    failureFlash: true
+    successRedirect: '/'
 });
 
 // SignUp
