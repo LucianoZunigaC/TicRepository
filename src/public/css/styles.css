@@ -1,0 +1,865 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: roboto condensed, helvetica neue, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: #F2F9F1;
+}
+/*------------- header--------------*/
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+    -moz-transition: 0.8s;
+    -ms-transition: 0.8s;
+    -o-transition: 0.8s;
+    padding: 40px 100px;
+    z-index: 1000000;
+}
+
+.header2 {
+    padding: 5px 100px;
+    background: #cbefcf;
+}
+
+header.sticky {
+    padding: 5px 100px;
+    background: #cbefcf;
+}
+
+header.sticky .logo,
+header.sticky ul li a {
+    color: #00656C;
+}
+
+header .logo {
+    position: relative;
+    font-weight: 700;
+    color: #00656C;
+    text-decoration: none;
+    font-size: 2em;
+    /*text-transform: uppercase;
+    */
+    letter-spacing: 2px;
+    transition: 0, 8s;
+    -webkit-transition: 0, 8s;
+    -moz-transition: 0, 8s;
+    -ms-transition: 0, 8s;
+    -o-transition: 0, 8s;
+}
+
+header ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    position: relative;
+    list-style: none;
+}
+
+header ul li a {
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: #00656C;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+    -moz-transition: 0.8s;
+    -ms-transition: 0.8s;
+    -o-transition: 0.8s;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("Recursos/wallpaperbetter.com_7680x4320\ \(1\).jpg");
+    background-size: cover;
+}
+
+.banner2 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("Recursos/wallpaperbetter.com_7680x4320\ \(2\).jpg");
+    background-size: cover;
+}
+
+/*-----SECCION DESTACADOS-----*/
+
+.top-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.container-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.card-category {
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    gap: 2rem;
+}
+
+/*Categoria interior*/
+
+.category-interior {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-interior::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(#00000080, #00000080),
+        url('https://images.hola.com/imagenes/decoracion/20211123200124/plantas-interior-para-principiantes-bajo-mantenimiento-mc/1-23-950/plantas-principiantes-m.jpg?tx=w_680');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s;
+    z-index: -1;
+}
+
+.category-interior:hover::before {
+    transform: scale(1.1);
+}
+
+/*Categoria exterior*/
+
+.category-exterior {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-exterior::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(#00000080, #00000080),
+        url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/geranios-plantas-exterior-pelargonium-1654862296.jpg?crop=1.00xw:0.668xh;0,0.220xh&resize=640:*');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s;
+    z-index: -1;
+}
+
+.category-exterior:hover::before {
+    transform: scale(1.1);
+}
+
+/*Categoria suculentas*/
+
+.category-suculentas {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-suculentas::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(#00000080, #00000080),
+        url('https://media.admagazine.com/photos/618a5e67a9f7fab6f0622b5e/1:1/w_1081,h_1081,c_limit/93263.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s;
+    z-index: -1;
+}
+
+.category-suculentas:hover::before {
+    transform: scale(1.1);
+}
+
+.card-category p {
+    font-size: 2.5rem;
+    color: #fff;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.card-category p::after {
+    content: '';
+    width: 2.5rem;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.card-category span {
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.card-category span:hover {
+    color: greenyellow;
+}
+
+/*-----SECCION DE CARTAS-----*/
+
+.title {
+    text-align: center;
+    font-size: 2em;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    font-weight: 500;
+    color: #00656C;
+    text-decoration: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.container .card {
+    background-color: #F2F9F1;
+    width: 260px;
+    height: 290px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+}
+
+.container .card:hover {
+    transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -o-transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.container .card img {
+    width: 330px;
+    height: 240px;
+}
+
+.container .card h4 {
+    margin-top: 3px;
+    font-weight: 500;
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+.container .card p {
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+
+/*-----FOOTER-----*/
+
+footer {
+    background-color: #cbefcf;
+    height: auto;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 3rem;
+}
+
+.footer-content p {
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li {
+    margin: 0 10px;
+}
+
+.socials a i {
+    font-size: 2rem;
+    color: #000;
+    transition: color 0.4s ease;
+    -webkit-transition: color 0.4s ease;
+    -moz-transition: color 0.4s ease;
+    -ms-transition: color 0.4s ease;
+    -o-transition: color 0.4s ease;
+}
+
+.socials a:hover i {
+    color: green;
+}
+
+.footer-bottom {
+    background-color: #b5e6bc;
+    height: auto;
+    ;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    word-spacing: 2px;
+}
+
+/*Productos - HomeGardenPro*/
+
+.homegardenpro {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 100px auto;
+}
+
+.homegardenpro h2 {
+    align-self: flex-start;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    background-color: darkred;
+    display: inline-block;
+    padding: 1rem 2rem;
+    color: #fff;
+    font-size: 30px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.homegardenpro-contenido {
+    display: flex;
+}
+
+.homegardenpro-texto {
+    flex: 1;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.homegardenpro-texto-contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.homegardenpro-img {
+    flex: 1;
+}
+
+.homegardenpro-img img {
+    max-width: 100%;
+    border-radius: 10px;
+    height: auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.homegardenpro-texto h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.homegardenpro-texto-contenido p {
+    font-size: 20px;
+}
+
+.homegardenpro-texto-button {
+    background-color: darkgreen;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+/*------Tienda-------*/
+
+.stars i {
+    color: #00656C;
+}
+
+.container .card-tienda {
+    background-color: #F2F9F1;
+    width: 260px;
+    height: 368px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+}
+
+.container .card-tienda img {
+    width: 330px;
+    height: 240px;
+}
+
+.container .card-tienda h4 {
+    margin-top: 3px;
+    font-weight: 500;
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.comprar {
+    display: flex;
+    height: 80px;
+}
+
+.half {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.izq {
+    flex: 3;
+    justify-content: center;
+    align-items: center;
+}
+
+.der {
+    flex: 1;
+    justify-content: center;
+    align-items: start;
+}
+
+.add-cart {
+    border: 3px solid green;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+.add-cart:hover {
+    background-color: var(--primary-color);
+}
+
+.add-cart i {
+    font-size: 1.1rem;
+    color: green;
+}
+
+.add-cart:hover i {
+    color: darkgreen;
+}
+
+.price {
+    font-size: 23px;
+}
+
+.price span {
+    display: block;
+	font-size: 20px;
+	font-weight: 400;
+	text-decoration: line-through;
+	color: #777;
+}
+
+/*------ Fotos -------*/
+
+.gallery {
+    margin-top: 100px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 15rem);
+	gap: 1.5rem;
+	margin-bottom: 3rem;
+}
+
+.gallery img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.gallery-img-3 {
+	grid-column: 2/4;
+	grid-row: 1/3;
+}
+
+/*------ blog -------*/
+
+.container-blogs {
+	display: grid;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 30px;
+    align-items: center;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+}
+
+.card-blog {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.container-img {
+	position: relative;
+}
+
+.container-img img {
+	width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-blog .container-img {
+    border-radius: 2rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.button-group-blog {
+	position: absolute;
+	bottom: 1.5rem;
+	right: -2.5rem;
+
+	display: flex;
+	gap: 0.7rem;
+	z-index: -1;
+	transition: all 0.3s ease;
+}
+
+.card-blog:hover .button-group-blog {
+	z-index: 0;
+	right: 1.5rem;
+}
+
+.button-group-blog span {
+	background-color: #fff;
+	padding: 1rem;
+	border-radius: 50%;
+	transition: all 0.4s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-group-blog span i {
+	font-size: 1.3rem;
+}
+
+.button-group-blog span:hover {
+	background-color: var(--primary-color);
+}
+
+.button-group-blog span:hover i {
+	color: #fff;
+}
+
+.content-blog h3 {
+	font-size: 27px;
+	margin-bottom: 20px;
+	color: var(--dark-color);
+	font-weight: 500;
+}
+
+.content-blog h3:hover {
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.content-blog p {
+	margin-top: 1rem;
+	font-size: 20px;
+	color: #777;
+}
+
+.content-blog span {
+	color: #00656C;
+	font-size: 1.3rem;
+}
+
+.btn-read-more {
+	padding: 1rem 3rem;
+	background-color: darkgreen;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 15px;
+	border-radius: 2rem;
+	margin: 2rem 0 2rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.btn-read-more:hover {
+	background-color: green;
+}
+
+/*------- Contacto -------*/
+
+.formulario-contacto-contenedor{
+    margin: 80px auto;
+    width: 1200px;
+    display: flex;
+    background-color: white;
+}
+
+.informacion-contacto{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.informacion-contacto{
+    background-color: black;
+}
+
+.informacion-contacto h3, .informacion-contacto p, .redes-sociales i{
+    color: white;
+}
+.informacion-contacto h3{
+    font-size: 4rem;
+    margin-bottom: 80px;
+}
+
+.informacion-contacto p{
+    font-size: 2.2rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  
+}
+.informacion-contacto i{
+    color: darkgreen;
+}
+
+.formulario{
+    padding: 3rem;
+    flex: 1;
+}
+
+.input-formulario label{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin: 10px;
+}
+
+.input-formulario input, .input-formulario textarea{
+    width: 100%;
+}
+.input-formulario input, .input-formulario textarea{
+    padding: 1rem 1.6rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    outline: none;
+}
+.input-formulario textarea{
+    height: 4.5rem;
+    resize:none;
+}
+
+.contacto-texto-button{
+    margin-top: 10px;
+    background-color: darkgreen;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+/*------- Login y Register --------*/
+
+.form-box {
+	background-color: rgba(0, 0, 0, 0.65);
+	margin: 90px auto;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 0 3px #000;
+	position: absolute;
+	width: 500px;
+    height: auto;
+}
+.form-box:before {
+	background-image: url("/img/wallpaperbetter.com_7680x4320\ \(2\).jpg");
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	display: block;
+	filter: blur(2px);
+}
+.form-box .header-text {
+    color: white;
+	font-size: 32px;
+	font-weight: 600;
+	padding-bottom: 30px;
+	text-align: center;
+}
+.form-box input {
+	margin: 10px 0px;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 16px;
+}
+.form-box input[type=checkbox] {
+	display: none;
+}
+.form-box label {
+	position: relative;
+	margin-left: 5px;
+	margin-right: 10px;
+	top: 5px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+.form-box label:before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	background-color: #ddd;
+}
+.form-box input[type=checkbox]:checked+label:before {
+	content: "\2713";
+	font-size: 20px;
+	color: #000;
+	text-align: center;
+	line-height: 20px;
+}
+.form-box span {
+	font-size: 14px;
+    color: white;
+}
+.form-box button {
+	background-color: darkgreen;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+	padding: 10px;
+	margin: 20px 0px;
+}
+span a {
+	color: greenyellow;
+}
+
+
+
