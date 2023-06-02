@@ -3,6 +3,7 @@ const controller = require('../controllers/apiWeb.controller');
 
 // GET
 router.get('/logOut', controller.logOut);
+router.get('/getTemperatura', controller.AreaChartData);
 
 
 

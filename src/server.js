@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 // Routes
 app.use(require('./routes/apiWeb.routes')); // API WEB
 app.use(require('./routes/apiWebViews.routes')) // API WEB VIEWS
+app.use(require('./routes/apiHousePlant.routes')) // API House Plant
 
 
 // Static files

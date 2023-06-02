@@ -10,6 +10,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 }, async (email, password, done) => {
 
+
         console.log('Email:' + email + ' Password:' + password);
 
         const user = await dbCtrl.getUser(email, password);

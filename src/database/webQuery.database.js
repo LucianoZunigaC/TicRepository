@@ -67,10 +67,10 @@ dbCtrl.getMaxId = async (value) => {
 
         let maxID = (await pg.query(`SELECT max(id) FROM ${value}`)).rows[0].max;
 
-        if(maxID != null){
+        if (maxID != null) {
             return maxID + 1;
         }
-        
+
         return 0;
 
 
@@ -102,16 +102,55 @@ dbCtrl.inserUser = async (nombre, username, email, password) => {
 }
 
 
+// Temperatura
+
+dbCtrl.getDataMensual = async (id_user) => {
+
+    let nombresMeses = [
+        'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+        'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+    try {
+
+        let id_esp = await dbCtrl.getEspId_userId(id_user);
+        console.log(id_esp)
+
+        let dataArray = {
+            mes: [],
+            temperatura: [],
+            humedad: []
+        }
+
+        for (let i = 1; i <= 12; i++) {
+            dataArray.mes.push(nombresMeses[i - 1]);
 
 
+            let values = [i, 2023, id_esp];
+            let query = 'SELECT ROUND(AVG(valor)::numeric, 2) as avg FROM temperatura WHERE EXTRACT(MONTH FROM fecha) = $1 AND EXTRACT(YEAR FROM fecha) = $2 AND id_esp = $3';
+            
+            let dataTempAvg = (await pg.query(query, values)).rows[0].avg
+            dataArray.temperatura.push(dataTempAvg);
 
-// ESP
+            query = 'SELECT ROUND(AVG(valor)::numeric, 2) as avg FROM humedad WHERE EXTRACT(MONTH FROM fecha) = $1 AND EXTRACT(YEAR FROM fecha) = $2 AND id_esp = $3';
+            let dataHumAvg = (await pg.query(query, values)).rows[0].avg
+            dataArray.humedad.push(dataHumAvg);
+        }
+
+
+        return dataArray;
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 dbCtrl.insertTemperatura = async (id_esp, temperatura_aire) => {
 
 
     try {
-        
+
         let maxID = await dbCtrl.getMaxId('temperatura');
 
         let values = [maxID, id_esp, temperatura_aire, 'now()'];
@@ -131,7 +170,7 @@ dbCtrl.insertHumedad = async (id_esp, humedad_aire) => {
 
 
     try {
-        
+
         let maxID = await dbCtrl.getMaxId('humedad');
 
         let values = [maxID, id_esp, humedad_aire, 'now()'];
@@ -146,4 +185,31 @@ dbCtrl.insertHumedad = async (id_esp, humedad_aire) => {
         console.log(error);
     }
 }
+
+
+
+
+// ESP 
+
+dbCtrl.getEspId_userId = async (id_user) => {
+
+    try {
+
+
+        let values = [id_user];
+
+        let query = 'SELECT id FROM esp_monitor WHERE id_user = $1';
+
+        const id_esp = (await pg.query(query, values)).rows[0].id;
+
+        return id_esp;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
 module.exports = dbCtrl;

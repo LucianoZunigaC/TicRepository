@@ -31,7 +31,7 @@ apiWebCtrl.home = async (req, res) => {
 // SignIn
 apiWebCtrl.signIn = passport.authenticate('local', {
     failureRedirect: '/signIn',
-    successRedirect: '/'
+    successRedirect: '/categorias'
 });
 
 // SignUp
@@ -87,6 +87,23 @@ apiWebCtrl.postESP = async (req, res) => {
     return res.status(200).send('Recibido');
 
 }
+
+
+
+
+// Grafico Data
+
+apiWebCtrl.AreaChartData = async (req, res) => {
+
+    const user = req.user;
+
+    const dataMensual = await dbCtrl.getDataMensual(user.id);
+
+
+    return res.status(200).json(dataMensual);
+}
+
+
 
 
 
