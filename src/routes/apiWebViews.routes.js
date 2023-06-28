@@ -6,6 +6,7 @@ router.get('/', controller.renderHome);
 router.get('/signIn', controller.renderLogin);
 router.get('/categorias', isAuthenticated, controller.renderCategorias);
 router.get('/graficos', isAuthenticated, controller.renderGraficos);
+router.get('/micuenta', controller.renderMiCuenta);
 
 
 module.exports = router;

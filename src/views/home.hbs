@@ -1,10 +1,7 @@
+<title>Home</title>
+
+
 <section class="banner"></section>
-<script type="text/javascript">
-    window.addEventListener("scroll", function () {
-        var header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 0);
-    })
-</script>
 
 {{>navbar}}
 
@@ -14,12 +11,11 @@
         <div class="homegardenpro-texto">
             <h3>La mejor alternativa para el cuidado y monitorieo de tus plantas</h3>
             <div class="homegardenpro-texto-contenido">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, placeat itaque! Atque, est
-                    facilis quae reprehenderit molestias deserunt. Neque qui nemo id corporis accusamus cupiditate
-                    repellendus, officiis necessitatibus iusto exercitationem? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Molestiae quasi distinctio ipsa, vero facere aliquam earum,
-                    officiis est, eveniet voluptate nam soluta alias commodi ut suscipit molestias maxime
-                    asperiores! Odio.</p>
+                <p>Pensado para pequeños cultivadores y para plantas de hogares, HomeGardenPro cumple con los
+                    todo lo que necesitas para ayudar con el cuidado de tu planta. Contamos con sensores de Temperatura,
+                    Humedad de aire y Humedad de suelo, siendo asi de gran ayuda para problemas como la falta de agua,
+                    falta de calor y más.
+                </p>
             </div>
             <div class="homegardenpro-texto-button" onclick="window.location.href = 'index.html'">Leer más sobre
                 nosotros</div>
@@ -37,11 +33,11 @@
 
     <h1 class="title">Nuestros productos</h1>
 
-    <div class="container">
+    <div class="containerr">
 
 
         <div class="card-tienda">
-            <img src="https://estag.fimagenes.com/img/1/d/T/0/dT0_1024.jpg" alt="">
+            <img src="/img/HGPprot.png" alt="">
             <div class="stars">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -56,7 +52,7 @@
                 </div>
                 <div class="half der">
                     <span class="add-cart">
-                        <i class="fa-solid fa-basket-shopping"></i>
+                        <i class="fa-solid fa-basket-shopping" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
                     </span>
                 </div>
 
@@ -64,7 +60,7 @@
         </div>
 
         <div class="card-tienda">
-            <img src="https://estag.fimagenes.com/img/1/d/T/0/dT0_1024.jpg" alt="">
+            <img src="/img/HGPprot.png" alt="">
             <div class="stars">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -79,7 +75,7 @@
                 </div>
                 <div class="half der">
                     <span class="add-cart">
-                        <i class="fa-solid fa-basket-shopping"></i>
+                        <i class="fa-solid fa-basket-shopping" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
                     </span>
                 </div>
 
@@ -87,7 +83,7 @@
         </div>
 
         <div class="card-tienda">
-            <img src="https://estag.fimagenes.com/img/1/d/T/0/dT0_1024.jpg" alt="">
+            <img src="/img/HGPprot.png" alt="">
             <div class="stars">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -102,7 +98,7 @@
                 </div>
                 <div class="half der">
                     <span class="add-cart">
-                        <i class="fa-solid fa-basket-shopping"></i>
+                        <i class="fa-solid fa-basket-shopping" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
                     </span>
                 </div>
 
@@ -148,3 +144,6 @@
     </div>
 
 </footer>
+
+<!-- Modal -->
+{{>modalCompra}}

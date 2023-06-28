@@ -1,0 +1,25 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar planta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/subirArchivo" method="POST" enctype="multipart/form-data">
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Codigo de Producto</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Codigo" name="id_esp">
+
+                        <label for="subirArchivo" style="margin-top: 2rem;">Identificar planta</label>
+                        <input type="file" name="image" id="subirArchivo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

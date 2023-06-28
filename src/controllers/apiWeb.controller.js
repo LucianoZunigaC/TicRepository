@@ -1,5 +1,7 @@
 const passport = require('passport');
 const dbCtrl = require('../database/webQuery.database');
+const { convertirHumedad } = require('../helpers/setApiHouse');
+
 
 
 // towade5442@jwsuns.com
@@ -28,11 +30,13 @@ apiWebCtrl.home = async (req, res) => {
 
 
 
+
 // SignIn
 apiWebCtrl.signIn = passport.authenticate('local', {
     failureRedirect: '/signIn',
     successRedirect: '/categorias'
 });
+
 
 // SignUp
 apiWebCtrl.signUp = async (req, res) => {
@@ -43,15 +47,13 @@ apiWebCtrl.signUp = async (req, res) => {
 
     let existUser = await dbCtrl.getUserEmail(email);
 
-    console.log(req.body);
-
     if (password === confirmPassword) {
 
         if (existUser) {
             return res.status(200).send('Usuario ya existente en la base de datos');
         } else {
 
-            await dbCtrl.inserUser(nombre, username, email, password);
+            await dbCtrl.insertUser(nombre, username, email, password);
 
             return res.status(200).send('Usuario registrado correctamente');
         }
@@ -75,19 +77,19 @@ apiWebCtrl.logOut = async (req, res, next) => {
 
 apiWebCtrl.postESP = async (req, res) => {
 
-    // console.log(req.body);
+    console.log(req.body);
 
     const { temperatura_aire, humedad_aire, humedad_suelo, id_esp } = req.body;
 
+
     await dbCtrl.insertTemperatura(id_esp, temperatura_aire);
     await dbCtrl.insertHumedad(id_esp, humedad_aire);
-
+    await dbCtrl.insertHumedadSuelo(id_esp, humedad_suelo);
 
 
     return res.status(200).send('Recibido');
 
 }
-
 
 
 
@@ -99,9 +101,50 @@ apiWebCtrl.AreaChartData = async (req, res) => {
 
     const dataMensual = await dbCtrl.getDataMensual(user.id);
 
-
-    return res.status(200).json(dataMensual);
+    // return res.status(200).json(dataMensual);
 }
+
+
+apiWebCtrl.splineChartData = async (req, res) => {
+
+    const user = req.user;
+
+
+    const data = await dbCtrl.getInteravloSpline(user.id);
+
+    if (data !== false) {
+        return res.status(200).json(data);
+    }
+
+    return res.status(200).json({
+        status: false
+    });
+
+}
+
+
+apiWebCtrl.realTimeChart = async (req, res) => {
+
+    const user = req.user;
+
+    let data = await dbCtrl.getRealTimeData(user.id);
+
+    if (data !== false) {
+        data.humedad_suelo = convertirHumedad(data.humedad_suelo);
+
+        return res.status(200).json(data);
+    }
+
+    return res.status(200).json({
+        status: false
+    });
+
+    // console.log(data);
+
+
+}
+
+
 
 
 

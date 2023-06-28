@@ -1,16 +1,42 @@
-<div class="grid-container">
+<title>Graficos</title>
+
+
+<div class="grid-containerr">
 
     <!-- Sidebar -->
     <aside id="sidebar">
+        {{#if datosPlanta.length}}
+        {{#each datosPlanta}}
         <div class="sidebar-title">
-            <div class="sidebar-brand">PLANTA 3</div>
+            <div class="sidebar-brand">PLANTA {{this.id}}</div>
         </div>
-        <h4>
-            Agregar aqui una clase centrada que nos diga el nombre de la planta, ademas hay que centrar el titulo de
-            arriba y tambien hacerlo un poco mas grande, este texto o lo que vaya aqui tambien tiene que ser más grande
-            y lo
-            que este debajo puede ser como de este tamaño
-        </h4>
+
+        <div class="info-planta">
+            <div class="imagen">
+                {{!-- <img src="{{this.ruta_imagen_real}}" alt=""> --}}
+                <img src="{{this.ruta_imagen_similar.[0]}}" alt="" class="img-planta-similar">
+            </div>
+            <div class="nombre_cientifico">
+                <h3>NOMBRE CIENTIFICO:</h3>
+                <h3>{{this.nombre_cientifico}}</h3>
+            </div>
+            <div class="nombre_cientifico">
+                <h3>FAMILIA</h3>
+                <h3>{{this.familia}}</h3>
+            </div>
+            <div class="nombre_cientifico">
+                <h3>NOMBRES COMUNES:</h3>
+                <ul>
+                    {{#each this.nombres_comun}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
+
+        </div>
+        {{/each}}
+        {{/if}}
         <div class="buton-chart_volver">
             <a href="/">Volver</a>
         </div>
@@ -18,48 +44,53 @@
     <!-- End Sidebar -->
 
     <!-- Main -->
-    <main class="main-container">
+    <main class="main-containerr">
         <div class="main-title">
             <h2>Mis Plantas</h2>
         </div>
 
         <div class="main-cards">
 
+            {{#each ids_esp}}
             <div class="cardz">
-                <h1>Planta 1</h1>
+                <h1>Planta {{this.id}}</h1>
             </div>
 
-            <div class="cardz">
-                <h1>Planta 2</h1>
-            </div>
 
-            <div class="cardz">
+            {{!-- <div class="cardz">
                 <h1>Planta 3</h1>
             </div>
 
             <div class="cardz">
                 <h1>Planta 4</h1>
+            </div> --}}
+            {{/each}}
+            <div class="cardz" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a style="text-decoration: none;">
+                    <h1>Agregar Planta</h1>
+                </a>
             </div>
-
         </div>
 
         <div class="charts">
+            <div class="charts-card">
+                <h2 class="chart-title">Datos En Tiempo Real</h2>
+                {{>realTimeChart}}
+            </div>
 
+            <div class="charts-card">
+                <h2 class="chart-title">Temperatura y Humedad Diaria</h2>
+                {{>splineChart}}
+            </div>
             <div class="charts-card charts-large">
                 <h2 class="chart-title">Temperatura y Humedad Anual</h2>
-                <div id="area-chart"></div>
-            </div>
-            <div class="charts-card">
-                <h2 class="chart-title">Promedio Temperatura Anual</h2>
-                <div id="bar-chart"></div>
-            </div>
-
-            <div class="charts-card">
-                <h2 class="chart-title">Top 5 Products</h2>
-                <div id="bar-chart2"></div>
+                {{>areaChart}}
             </div>
 
         </div>
+
+        <!-- Modal -->
+        {{>modalAddPlant}}
 
     </main>
     <!-- End Main -->
@@ -71,4 +102,8 @@
 <!-- ApexCharts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
 <!-- Custom JS -->
-<script src="/js/graficos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone.min.js"></script>
+
+<script src="/js/area_chart.js"></script>
+<script src="/js/real_time.js"></script>
+<script src="/js/spline_chart.js"></script>

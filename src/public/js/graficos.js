@@ -318,6 +318,10 @@ var barChart2 = new ApexCharts(document.querySelector("#bar-chart2"), barChartOp
 barChart2.render();
 
 
+// areaChart();
+
+
+
 // AREA CHART
 fetch('http://localhost:3000/getTemperatura')
   .then(res => res.json())

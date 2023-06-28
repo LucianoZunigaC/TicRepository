@@ -1,51 +1,76 @@
+const dbCtrl = require('../database/webQuery.database');
+const axios = require('axios'); // HTTP client
+
+const { setApiHouse } = require('../helpers/setApiHouse');
+
+
 plantsCtrl = {};
 
 
+plantsCtrl.subirArchivo = async (req, res) => {
 
-plantsCtrl.getAllCategories = async (req, res) => {
+    console.log(req.file)
 
+    let user = req.user;
 
-    const url = 'https://house-plants2.p.rapidapi.com/all-lite';
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'f2903ab274msh37b9574ccf0b822p17fe37jsn43f050142aae',
-            'X-RapidAPI-Host': 'house-plants2.p.rapidapi.com'
-        }
+    let { setting, form } = setApiHouse(req.file.path);
+
+    let planta_object = {
+        nombre_cientifico: '',
+        genero: '',
+        familia: '',
+        nombres_comun: [],
+        ruta_imagen_real: '',
+        ruta_imagen_similar: []
     };
 
     try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        console.log(result);
-
-        const resultado = result
-            .filter(objeto => objeto.Origin && objeto.Origin.includes("Ecuador"))
-            .map(objeto => objeto.id);
+        const { status, data } = await axios.post(setting, form, { headers: form.getHeaders() });
 
 
+        // console.log('status', status); // should be: 200
+        // console.log('data', require('util').inspect(data, false, null, true));
+
+
+        let result = data.results[0];
+
+        planta_object.nombre_cientifico = result.species.scientificName;
+        planta_object.genero = result.species.genus.scientificName;
+        planta_object.familia = result.species.family.scientificName;
+        planta_object.nombres_comun = result.species.commonNames;
+        planta_object.ruta_imagen_real= req.file.path;
+
+        let img = result.images;
+        let arreglo_rutas = []
+
+        for(let i = 0; i < img.length; i++){
+            arreglo_rutas.push(img[i].url.m);
+        }
+        planta_object.ruta_imagen_similar = arreglo_rutas;
+        let user_id = user.id;
+
+        let id_esp = req.body.id_esp;
+
+        console.log({
+            id_esp,
+            user_id,
+            planta_object
+        })
+
+        await dbCtrl.insertPlanta(planta_object, user.id, id_esp);
 
 
 
-        const url2 = `https://house-plants2.p.rapidapi.com/id/${resultado[0]}`;
-        const options2 = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'f2903ab274msh37b9574ccf0b822p17fe37jsn43f050142aae',
-                'X-RapidAPI-Host': 'house-plants2.p.rapidapi.com'
-            }
-        };
 
-
-        const response2 = await fetch(url2, options2);
-        const result2 = await response2.json();
-        console.log(result2);
-
-
-        return res.status(200).json(result2)
+        return res.status(status).redirect('/graficos');
     } catch (error) {
-        console.error(error);
+        console.error('error', error);
     }
+
 }
+
+
+
+
 
 module.exports = plantsCtrl;

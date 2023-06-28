@@ -8,4 +8,7 @@ helpers.isAuthenticated = (req, res, next) => {
     res.redirect('/signIn');
 }
 
+
+
+
 module.exports = helpers;

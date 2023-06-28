@@ -6,8 +6,10 @@ const exphbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
+const multer = require('multer');
 
 // Inticializacion
+
 const app = express();
 require('./config/passport');
 
@@ -36,6 +38,22 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/uploads'),
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+console.log()
+
+app.use(multer({
+    storage,
+    dest: path.join(__dirname, 'public/uploads')
+}).single('image'));
+
+
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,6 +63,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
     // res.locals.error = req.flash('error');
     res.locals.user = req.user || null;
+    
     next();
 });
 
